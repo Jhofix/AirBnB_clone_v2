@@ -1,6 +1,33 @@
 #!/usr/bin/env bash
 # Prepare a web server for deployment
 
+if ! [ -f /usr/sbin/nginx ]; then
+    apt-get -y update
+    apt-get -y install nginx
+    ufw allow 'Nginx HTTP'
+    echo "Hello World!" > /var/www/html/index.nginx-debian.html
+    service nginx start
+fi
+
+string="\tif (\$request_filename ~ redirect_me){\
+		\n\t\trewrite ^ https://sketchfab.com/bluepeno/models permanent;\
+	\n\t}\n\
+    \n\tadd_header X-Served-By $HOSTNAME;\
+	\n\terror_page 404 /error404.html;\
+	\n\tlocation = /error404.html {\
+		\n\t\troot /var/www/html;\
+		\n\t\tinternal;\
+	\n\t}"
+
+echo "Ceci n'est pas une page" > /var/www/html/error404.html
+sed -i "53 i\ $string" /etc/nginx/sites-enabled/default
+
+if [ "$(pgrep -c nginx)" -lt 1 ]; then
+	service nginx start
+else
+	service nginx restart
+fi
+
 if ! [ -e /data/ ]; then
     mkdir /data/
 
