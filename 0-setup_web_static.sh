@@ -11,7 +11,7 @@ fi
 string="\t}\n\
     \n\
     location /hbnb_static {\n\
-        alias /data/web_static/current;\n\
+        alias /data/web_static/current/;\n\
     }\n\
     \n\
     if (\$request_filename ~ redirect_me){\n\
