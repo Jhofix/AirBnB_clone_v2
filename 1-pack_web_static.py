@@ -9,7 +9,7 @@ import os.path
 def do_pack():
     """Archive all files in web_static"""
     time_stamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    path=f"versions/web_static_{time_stamp}.tgz"
+    path = f"versions/web_static_{time_stamp}.tgz"
     print(path)
     ok = "Good"
 
