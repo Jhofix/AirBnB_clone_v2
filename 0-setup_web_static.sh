@@ -39,7 +39,7 @@ else
     ln -s /data/web_static/releases/test/ /data/web_static/current
 fi
 
-chown ubuntu:ubuntu /data/
+chown ubuntu /data/
 
 if [ "$(pgrep -c nginx)" -lt 1 ]; then
 	service nginx start
