@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """SET UP A WEB SERVER
 """
 from datetime import datetime
