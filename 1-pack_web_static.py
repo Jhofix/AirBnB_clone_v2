@@ -16,6 +16,6 @@ def do_pack():
     if not os.path.isdir("versions"):
         if local("mkdir versions").failed:
             return None
-    if local(f"tar -cvf {path} web_static").failed:
+    if local(f"tar -cvf {path}").failed:
         return None
     return os.path.abspath(path)
