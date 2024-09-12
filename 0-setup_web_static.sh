@@ -29,8 +29,8 @@ sed -i "1,/^\t}/ s|^\t}|$string|" /etc/nginx/sites-enabled/default
 
 echo "Ceci n'est pas une page" > /var/www/html/error404.html
 
-mkdir /data/web_static/releases/test/
-mkdir /data/web_static/shared/
+mkdir -p /data/web_static/releases/test/
+mkdir -p /data/web_static/shared/
 echo "Ready for web_static deployment" > /data/web_static/releases/test/index.html
 
 if [ -e /data/web_static/current ]; then
