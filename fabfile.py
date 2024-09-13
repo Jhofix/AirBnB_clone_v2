@@ -26,7 +26,6 @@ def do_deploy(archive_path):
     
     fpath = archive_path.split('/')[-1]
     abs_fname = fpath.split('.')[0]
-    put_file = "0-setup_web_static.sh"
     '''
     if not os.path.isfile(archive_path):
         print("1_Failed")
@@ -65,5 +64,3 @@ def do_try():
         return False
     else:
         return True
-    
-    #return True

@@ -5,6 +5,7 @@ from datetime import datetime
 from fabric.api import *
 import os.path
 
+env.hosts = ["ubuntu@18.235.233.120"]
 
 def do_deploy(archive_path):
     '''Deploy web_static to web servers

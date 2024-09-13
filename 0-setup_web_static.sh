@@ -35,6 +35,7 @@ echo "Ready for web_static deployment" > /data/web_static/releases/test/index.ht
 
 if [ -e /data/web_static/current ]; then
     rm /data/web_static/current
+    ln -s /data/web_static/releases/test/ /data/web_static/current
 else
     ln -s /data/web_static/releases/test/ /data/web_static/current
 fi
