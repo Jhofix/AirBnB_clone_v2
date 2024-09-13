@@ -7,7 +7,15 @@ import os.path
 
 
 def do_deploy(archive_path):
+    '''Deploy web_static to web servers
+    
+    Args: 
+        archive_path (str): path to archived file
 
+    Returns:
+        False - If any error occurs
+        True - If all are successful
+    '''
     fpath = archive_path.split('/')[-1]
     abs_fname = fpath.split('.')[0]
 
