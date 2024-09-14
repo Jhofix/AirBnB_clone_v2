@@ -18,7 +18,7 @@ def do_deploy(archive_path):
         False - If any error occurs
         True - If all are successful
     '''
-    fpath = archive_path.split('/')[-1]
+    fname = archive_path.split('/')[-1]
     abs_fname = fpath.split('.')[0]
 
     try:
