@@ -24,10 +24,11 @@ def do_deploy(archive_path):
     try:
         run
         put(f"{archive_path}", f"/tmp/")
-        run(f"mkdir /data/web_static/releases/{abs_fname}")
+        run(f"mkdir -p /data/web_static/releases/{abs_fname}")
         run(f"tar -xvzf /tmp/{fname} -C \
             /data/web_static/releases/{abs_fname}")
         run(f"rm /tmp/{fname}")
+        run("rm -r /data/web_static/current")
         run(f"ln -sf /data/web_static/releases/{abs_fname} \
             /data/web_static/current")
     except Exception as e:
