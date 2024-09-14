@@ -12,9 +12,7 @@ def do_pack():
     """Archive all files in web_static"""
     time_stamp = datetime.now().strftime("%Y%m%d%H%M%S")
     path=f"versions/web_static_{time_stamp}.tgz"
-    target=f"~/repositories/hbnb_static/web_static"
-
-
+    target=f"web_static"
 
     if not os.path.isdir("versions"):
         if local("mkdir versions").failed:
@@ -48,7 +46,7 @@ def do_deploy(archive_path):
         run
         put(f"{archive_path}", f"/tmp/")
         run(f"mkdir -p /data/web_static/releases/{abs_fname}")
-        run(f"tar -xvzf /tmp/{fname} -C /data/web_static/releases/{abs_fname}")
+        run(f"tar -xvzf /tmp/{fname} -C /data/web_static/releases/{abs_fname} --strip-components=1")
         run(f"rm /tmp/{fname}")
         run("rm -r /data/web_static/current")
         run(f"ln -s /data/web_static/releases/{abs_fname} /data/web_static/current")
