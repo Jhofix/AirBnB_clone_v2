@@ -43,18 +43,6 @@ def do_deploy(archive_path):
         return True
 
 
-def do_try():
-    try:
-        local("ls .")
-        local('pwd')
-        local('ls v*')
-    except Exception as e:
-        print(f"Error {e}")
-        return False
-    else:
-        return True
-
-
 def deploy():
     """Archives and deploy web_static to servers"""
     fpack = do_pack()
