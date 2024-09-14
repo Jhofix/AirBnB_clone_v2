@@ -57,7 +57,7 @@ def do_try():
 
 def deploy():
     """Archives and deploy web_static to servers"""
-    fpack = do_pack
+    fpack = do_pack()
     if (fpack is None):
         return False
     return do_deploy(fpack)
