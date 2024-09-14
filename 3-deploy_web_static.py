@@ -11,8 +11,8 @@ env.hosts = ["ubuntu@18.235.233.120", "ubuntu@54.242.193.230"]
 def do_pack():
     """Archive all files in web_static"""
     time_stamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    path=f"versions/web_static_{time_stamp}.tgz"
-    target=f"web_static"
+    path = f"versions/web_static_{time_stamp}.tgz"
+    target = f"web_static"
 
     if not os.path.isdir("versions"):
         if local("mkdir versions").failed:
@@ -21,27 +21,12 @@ def do_pack():
         return None
     return os.path.abspath(path)
 
+
 def do_deploy(archive_path):
-    
+
     fname = archive_path.split('/')[-1]
     abs_fname = fname.split('.')[0]
-    '''
-    if not os.path.isfile(archive_path):
-        print("1_Failed")
-        return False
 
-    if (put(f"{archive_path}", f"/tmp/{archive_path}").failed):
-        return False
-
-    if local(f"tar -xzf {archive_path} -C /data/web_static/releases/{abs_fname}").failed:
-        return False
-    
-    if (run(f"rm /tmp/{archive_path}").failed):
-        return False
-
-    if (run(f"ln -sf /data/web_static/releases/{abs_fname} /data/web_static/current").failed):
-        return False
-    '''
     try:
         run
         put(f"{archive_path}", f"/tmp/")
@@ -57,6 +42,7 @@ def do_deploy(archive_path):
     else:
         return True
 
+
 def do_try():
     try:
         local("ls .")
@@ -67,10 +53,11 @@ def do_try():
         return False
     else:
         return True
+
+
 def deploy():
     """Archives and deploy web_static to servers"""
     fpack = do_pack
-    if (fpack == None):
+    if (fpack is None):
         return False
     return do_deploy(fpack)
-    
