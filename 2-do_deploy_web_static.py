@@ -7,10 +7,11 @@ import os.path
 
 env.hosts = ["ubuntu@18.235.233.120"]
 
+
 def do_deploy(archive_path):
     '''Deploy web_static to web servers
-    
-    Args: 
+
+    Args:
         archive_path (str): path to archived file
 
     Returns:
@@ -21,10 +22,12 @@ def do_deploy(archive_path):
     abs_fname = fpath.split('.')[0]
 
     try:
-        put(f"{archive_path}", f"/tmp/{archive_path}")
-        local(f"tar -xvzf {archive_path} -C \
-              /data/web_static/releases/{abs_fname}")
-        run(f"rm /tmp/{archive_path}")
+        run
+        put(f"{archive_path}", f"/tmp/")
+        run(f"mkdir /data/web_static/releases/{abs_fname}")
+        run(f"tar -xvzf /tmp/{fname} -C \
+            /data/web_static/releases/{abs_fname}")
+        run(f"rm /tmp/{fname}")
         run(f"ln -sf /data/web_static/releases/{abs_fname} \
             /data/web_static/current")
     except Exception as e:
