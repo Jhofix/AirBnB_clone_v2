@@ -63,7 +63,11 @@ def deploy():
         return False
     return do_deploy(fpack)
 
-def do_clean():
+def do_clean(number=0):
     """Remove older verions of web_static from /data/web_static/releases"""
-    run("cd /data/web_static/releases/ && \
-        rm -rf $(ls -tr | grep web | tail -n +3)")
+    n = number
+    if number == 0:
+        n = 1
+    local(f"cd versions && rm -f $(ls -tr | grep web | tail -n +{n + 1})")
+    run(f"cd /data/web_static/releases/ && \
+        rm -rf $(ls -tr | grep web | tail -n +{n + 1})")
