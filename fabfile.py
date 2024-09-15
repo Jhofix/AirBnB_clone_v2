@@ -5,12 +5,16 @@ from datetime import datetime
 from fabric.api import *
 import os.path
 
-env.hosts = ["ubuntu@18.235.233.120"]
+env.hosts = ["ubuntu@18.235.233.120", "ubuntu@54.242.193.230"]
 
+run_time = lambda : datetime.now().strftime("%Y%m%d%H%M%S")
+time_stamp = run_time()
 
 def do_pack():
     """Archive all files in web_static"""
-    time_stamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    #time_stamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    #run_time = lambda : datetime.now().strftime("%Y%m%d%H%M%S")
+    #time_stamp = run_time()
     path = f"versions/web_static_{time_stamp}.tgz"
     target = f"web_static"
 
@@ -28,7 +32,6 @@ def do_deploy(archive_path):
     abs_fname = fname.split('.')[0]
 
     try:
-        run
         put(f"{archive_path}", f"/tmp/")
         run(f"mkdir -p /data/web_static/releases/{abs_fname}")
         run(f"tar -xvzf /tmp/{fname} -C \
@@ -65,7 +68,7 @@ def deploy():
 
 def do_clean(number=0):
     """Remove older verions of web_static from /data/web_static/releases"""
-    n = number
+    n = int(number)
     if number == 0:
         n = 1
     local(f"cd versions && rm -f $(ls -tr | grep web | tail -n +{n + 1})")
