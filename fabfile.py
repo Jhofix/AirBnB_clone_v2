@@ -5,7 +5,7 @@ from datetime import datetime
 from fabric.api import *
 import os.path
 
-env.hosts = ["ubuntu@18.235.233.120", "ubuntu@54.242.193.230"]
+env.hosts = ["18.235.233.120", "54.242.193.230"]
 
 run_time = lambda : datetime.now().strftime("%Y%m%d%H%M%S")
 time_stamp = run_time()

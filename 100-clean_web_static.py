@@ -3,6 +3,8 @@
 """
 
 from fabric.api import *
+env.hosts = ["18.235.233.120", "54.242.193.230"]
+
 
 def do_clean(number=0):
     """Remove older verions of web_static from /data/web_static/releases"""
